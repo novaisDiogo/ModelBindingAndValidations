@@ -6,7 +6,8 @@ namespace ModelBindingAndValidations.Controllers
     [Route("order")]
     public class OrderController : Controller
     {
-        public IActionResult Index(Order order)
+        [HttpPost("addOrder")]
+        public IActionResult AddOrder(Order order)
         {
             if (!ModelState.IsValid)
             {
@@ -15,7 +16,7 @@ namespace ModelBindingAndValidations.Controllers
                 return BadRequest(messageError);
             }
 
-            return Content($"New Order Number:{order.OrderNo}");
+            return Content($"New Order Number: {order.OrderNo}");
         }
 
         private string GetErrorsFromModelState()
